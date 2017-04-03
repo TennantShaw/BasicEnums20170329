@@ -7,57 +7,50 @@ enum Color {
     case orange
 }
 
-var primaryComplementColors = Color.red
 
-func complement (Color: Color) {
-    switch primaryComplementColors {
+func complement (color: Color) -> Color {
+    switch color {
     case .red:
-        print("Green!")
+        return(Color.green)
     case .yellow:
-        print("Purple!")
+        return(Color.purple)
     case .blue:
-        print("Orange!")
+        return(Color.orange)
     case .green:
-        print("Red!")
+        return(Color.red)
     case .purple:
-        print("Yellow!")
+        return(Color.yellow)
     case .orange:
-        print("Blue")
+        return(Color.blue)
     }
 }
 
-complement(Color: .red)
-complement(Color: .yellow)
-/*
- complement(Color: "yellow")
- complement(Color: "blue")
- complement(Color: "green")
- complement(Color: "purple")
- complement(Color: "orange")
- */
+complement(color: .red) == .green
+complement(color: .yellow) == .purple
+complement(color: .blue) == .orange
+complement(color: .green) == .red
+complement(color: .purple) == .yellow
+complement(color: .orange) == .blue
+
 
 enum Instruction {
-    case left(Int)
-    case right(Int)
+    case left
+    case right
 }
 
-let turnLeft = Instruction.left(9)
-let turnRight = Instruction.right(0)
-
-func printInstruction (direction: Instruction) {
-    switch turnLeft {
-    case .left(9):
-        print("turn left and take 9 steps")
-    case .right(0):
-        print("Turn right")
+func printInstruction (direction: Instruction, movementAmount: Int) -> String {
+    switch (direction, movementAmount) {
+    case (.left, 9):
+        return("turn \(direction) and take \(movementAmount) steps")
+    case (.right, 0):
+        return("turn \(direction)")
+    case (.right, 1):
+        return("turn \(direction) and take \(movementAmount) step")
     default:
-        print("")
+        return ("")
     }
 }
 
-printInstruction(direction: .left(9))
-
-/*printInstruction(.left(9)) == "turn left and take 9 steps"
- printInstruction(.right(0)) == "turn right"
- printInstruction(.right(1)) == "turn right and take 1 step"
- */
+printInstruction(direction: .left, movementAmount: 9) == "turn left and take 9 steps"
+printInstruction(direction:  .right, movementAmount: 0) == "turn right"
+printInstruction(direction: .right, movementAmount: 1) == "turn right and take 1 step"
